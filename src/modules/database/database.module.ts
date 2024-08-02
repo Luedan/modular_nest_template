@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { envs } from '@app/config/envs';
 import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';

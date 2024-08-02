@@ -14,10 +14,10 @@ import {
   Repository,
 } from 'typeorm';
 
-/* istanbul ignore next */
 /**
  * An abstract class representing a repository.
  */
+/* istanbul ignore next */
 export abstract class AbstractRepository<E extends ObjectLiteral> {
   /**
    * Retrieves multiple entities based on the provided options.

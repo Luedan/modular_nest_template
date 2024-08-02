@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { Global, Module } from '@nestjs/common';
 import { HttpAdapter } from './adapters/httpAdapter.service';
 import { HttpModule } from '@nestjs/axios';

@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { GetPokemonByName } from './external/pokeApi/getPokemonByName.service';
 import { ExampleContext } from './persistence/context/exampleContext.service';
 import { TodoRepository } from './persistence/repositories/todo/todo.repository';

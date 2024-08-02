@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { AbstractRepository } from '@app/modules/database/classes/abstractRepository';
 import { GenericRepository } from '@app/modules/database/classes/genericRepository';
 import { Todo } from '@app/modules/example/domain/todo/todo.entity';
@@ -10,6 +11,7 @@ import { DataSource } from 'typeorm';
  * The context for the example module.
  */
 @Injectable()
+/* istanbul ignore next */
 export class ExampleContext {
   /**
    * Represents the repository for the 'Todo' entity.

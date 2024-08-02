@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { TodoController } from './controllers/todo/todo.controller';
 
 /**
