@@ -1,5 +1,8 @@
 import { Module } from '@nestjs/common';
-import { PERSISTENCE_PROVIDERS } from './infrastructure';
+import {
+  EXAMPLE_PERSISTENCE_PROVIDERS,
+  EXAMPLE_EXTERNAL_PROVIDERS,
+} from './infrastructure';
 import { classes } from '@automapper/classes';
 import { AutomapperModule } from '@automapper/nestjs';
 import { JwtModule } from '@nestjs/jwt';
@@ -21,7 +24,8 @@ import { EXAMPLE_CONTROLLERS } from './presentation';
   ],
   controllers: [...EXAMPLE_CONTROLLERS],
   providers: [
-    ...PERSISTENCE_PROVIDERS,
+    ...EXAMPLE_PERSISTENCE_PROVIDERS,
+    ...EXAMPLE_EXTERNAL_PROVIDERS,
     ...EXAMPLE_PROFILES,
     ...EXAMPLE_USE_CASES,
   ],

@@ -41,6 +41,9 @@ async function bootstrap() {
 
   await app.listen(envs.PORT);
 
-  Logger.log(`Server running on http://localhost:${envs.PORT}`, 'Bootstrap');
+  Logger.log(
+    `Server running on http://localhost:${envs.PORT}/docs`,
+    'Bootstrap',
+  );
 }
 bootstrap();
