@@ -1,73 +1,159 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Proyecto NestJS
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este proyecto es una plantilla de aplicación NestJS organizada con una arquitectura modular y escalable, diseñada para facilitar el desarrollo y mantenimiento de aplicaciones robustas.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Estructura del Proyecto
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
-```bash
-$ pnpm install
+```plaintext
+.
+├── docker-compose.yml           # Configuración para Docker Compose
+├── Dockerfile                   # Configuración del Dockerfile para la imagen de Docker
+├── jest.config.js               # Configuración de Jest para pruebas
+├── nest-cli.json                # Configuración del CLI de NestJS
+├── package.json                 # Dependencias y scripts del proyecto
+├── pnpm-lock.yaml               # Bloqueo de dependencias con PNPM
+├── README.md                    # Documentación del proyecto
+├── tsconfig.build.json          # Configuración de TypeScript para el build
+├── tsconfig.json                # Configuración TypeScript
+├── src                          # Código fuente de la aplicación
+│   ├── app.module.ts            # Módulo principal de la aplicación
+│   ├── config                   # Configuración de la aplicación
+│   │   └── envs.ts              # Configuración de variables de entorno
+│   ├── main.ts                  # Punto de entrada de la aplicación
+│   └── modules                  # Módulos de la aplicación
+│       ├── common               # Módulo común con utilidades compartidas
+│       │   ├── adapters         # Adaptadores de infraestructura
+│       │   ├── common.module.ts # Declaración del módulo común
+│       │   ├── filters          # Filtros de excepciones
+│       │   └── interceptors     # Interceptores de solicitudes
+│       ├── database             # Módulo de base de datos
+│       │   ├── classes          # Clases base y repositorios
+│       │   ├── database.module.ts # Declaración del módulo de base de datos
+│       │   └── types.d.ts       # Definiciones de tipos
+│       └── example              # Módulo de ejemplo con funcionalidad CRUD
+│           ├── domain           # Entidades y lógica de dominio
+│           │   ├── dto          # Data Transfer Objects (DTOs)
+│           │   └── todo.entity.ts # Entidad Todo
+│           ├── example.module.ts # Declaración del módulo de ejemplo
+│           ├── infrastructure   # Infraestructura del módulo
+│           │   ├── external     # Integración con APIs externas
+│           │   └── persistence  # Persistencia de datos
+│           │       ├── context  # Contextos de persistencia
+│           │       └── repositories # Repositorios de datos
+│           ├── presentation     # Capa de presentación (controladores)
+│           │   ├── controllers  # Controladores del módulo
+│           └── services         # Servicios de aplicación
+│               ├── profiles     # Perfiles para mapeos (por ejemplo, AutoMapper)
+│               └── useCases     # Casos de uso de la aplicación
+├── __test__                     # Pruebas unitarias
+│   ├── exampleModule            # Pruebas del módulo de ejemplo
+│   │   ├── infrastructure       # Pruebas de infraestructura
+│   │   ├── presentation         # Pruebas de controladores
+│   │   └── services             # Pruebas de servicios
+│   ├── jest.setup.js            # Configuración de Jest para pruebas
+│   └── mocks                    # Mocks para pruebas unitarias
+│       ├── exampleModule        # Mocks del módulo de ejemplo
+│       └── resultsMocks.ts      # Mocks de resultados
 ```
 
-## Running the app
+## Requisitos
+
+- **Node.js 18+**
+- **PNPM 8+**
+- **NestJS 10+**
+- **Docker** (opcional, para despliegue en contenedores)
+
+## Instalación
+
+1. **Clona el repositorio**:
+
+   ```bash
+   git clone <repositorio-url>
+   ```
+2. **Instala las dependencias**:
+
+   ```bash
+   pnpm install
+   ```
+3. **Configura las variables de entorno**:
+
+   - Renombra el archivo `.env.example` a `.env` y ajusta las variables según tu entorno.
+
+## Ejecución
+
+### Desarrollo
+
+Para iniciar la aplicación en modo de desarrollo:
 
 ```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+pnpm start:dev
 ```
 
-## Test
+### Producción
+
+Para construir la aplicación y ejecutarla en un entorno de producción:
 
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+pnpm build
+pnpm start:prod
 ```
 
-## Support
+### Docker
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Para construir y ejecutar la aplicación dentro de un contenedor Docker:
 
-## Stay in touch
+```bash
+docker-compose up --build
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Pruebas
 
-## License
+Las pruebas unitarias están ubicadas en el directorio `__test__` y están organizadas por módulos. Para ejecutar las pruebas:
 
-Nest is [MIT licensed](LICENSE).
+```bash
+pnpm test
+```
+
+## Descripción de Módulos
+
+### Common Module
+
+Contiene componentes reutilizables como adaptadores, filtros e interceptores que pueden ser utilizados en toda la aplicación.
+
+### Database Module
+
+Gestión de la conexión a la base de datos y proporciona clases y repositorios para la manipulación de datos.
+
+### Example Module
+
+Un módulo de ejemplo que implementa una funcionalidad básica de CRUD (Crear, Leer, Actualizar, Eliminar) utilizando principios de DDD (Domain-Driven Design).
+
+### Configuración de Docker
+
+- **Dockerfile**: Archivo para la creación de la imagen Docker de la aplicación.
+- **docker-compose.yml**: Archivo para configurar y ejecutar contenedores de Docker con `docker-compose`.
+
+## Contribución
+
+Si deseas contribuir a este proyecto, sigue los siguientes pasos:
+
+1. **Crea un branch** para tu feature:
+
+   ```bash
+   git checkout -b feature/nueva-feature
+   ```
+2. **Realiza tus cambios** y haz commits:
+
+   ```bash
+   git commit -m "Descripción del cambio"
+   ```
+3. **Sube tu branch** al repositorio remoto:
+
+   ```bash
+   git push origin feature/nueva-feature
+   ```
+4. **Crea un Pull Request** para revisar y fusionar los cambios.
+
+## Licencia
+
+Este proyecto está bajo la **licencia MIT**. Consulta el archivo `LICENSE` para más detalles.
