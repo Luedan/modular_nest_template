@@ -15,7 +15,7 @@ import { EXAMPLE_ENTITIES } from '../example/domain';
       url: envs.DATABASE_URL,
       entities: [...EXAMPLE_ENTITIES],
       logging: true,
-      synchronize: true,
+      synchronize: process.env.NODE_ENV === 'production' ? false : true,
     }),
   ],
 })

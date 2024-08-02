@@ -1,0 +1,13 @@
+services:
+  backend:
+    image: nest_backend_modular
+    build:
+      context: .
+      args:
+        - DATABASE_URL=${DATABASE_URL}
+        - PORT=${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - PORT=${PORT}
