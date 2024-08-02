@@ -15,6 +15,9 @@ import {
 } from 'typeorm';
 
 /* istanbul ignore next */
+/**
+ * An abstract class representing a repository.
+ */
 export abstract class AbstractRepository<E extends ObjectLiteral> {
   /**
    * Retrieves multiple entities based on the provided options.

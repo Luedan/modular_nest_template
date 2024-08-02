@@ -6,6 +6,9 @@ import { InjectDataSource } from '@nestjs/typeorm';
 import { Request } from 'express';
 import { DataSource } from 'typeorm';
 
+/**
+ * The context for the example module.
+ */
 @Injectable()
 export class ExampleContext {
   /**

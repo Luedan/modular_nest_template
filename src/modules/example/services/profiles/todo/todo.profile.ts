@@ -12,6 +12,10 @@ import { Todo } from '@app/modules/example/domain/todo/todo.entity';
  */
 @Injectable()
 export class TodoProfile extends AutomapperProfile {
+  /**
+   * Constructor
+   * @param mapper
+   */
   constructor(@InjectMapper() mapper: Mapper) {
     super(mapper);
   }

@@ -1,8 +1,8 @@
 {
   "name": "modular_back",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Nestjs modular back solution",
+  "author": "Luis Atencia",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -17,7 +17,17 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "doc": "npx compodoc -p tsconfig.json",
+    "lint-staged": "lint-staged",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint",
+      "npm run format",
+      "git add ."
+    ]
   },
   "dependencies": {
     "@automapper/classes": "^8.8.1",

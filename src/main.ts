@@ -6,7 +6,13 @@ import { envs } from './config/envs';
 import { HttpExceptionFilter } from './modules/common/filters/httpException.filter';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+/**
+ * The bootstrap function.
+ */
 async function bootstrap() {
+  /**
+   * Create the app.
+   */
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     cors: true,
   });
@@ -26,6 +32,9 @@ async function bootstrap() {
 
   app.useGlobalFilters(new HttpExceptionFilter());
 
+  /**
+   * Create the swagger document.
+   */
   const config = new DocumentBuilder()
     .setTitle('The API')
     .setDescription('The API description')
@@ -33,6 +42,9 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
 
+  /**
+   * Create the swagger module.
+   */
   const document = SwaggerModule.createDocument(app, config);
 
   if (process.env.NODE_ENV !== 'production') {

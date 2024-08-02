@@ -1,6 +1,9 @@
 import { AutoMap } from '@automapper/classes';
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
+/**
+ * A class representing a todo request dto.
+ */
 export class TodoRequestDto {
   /**
    * Todo id

@@ -14,6 +14,10 @@ import { ExampleContext } from '../../context/exampleContext.service';
  */
 @Injectable({ scope: Scope.REQUEST })
 export class TodoRepository {
+  /**
+   * Creates a new instance of TodoRepository.
+   * @param _context - The context to interact with the database.
+   */
   constructor(private readonly _context: ExampleContext) {}
 
   /**

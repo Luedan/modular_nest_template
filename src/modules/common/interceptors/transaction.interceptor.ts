@@ -10,14 +10,30 @@ import { Observable, catchError, concatMap, finalize } from 'rxjs';
 import { DataSource } from 'typeorm';
 import { InjectDataSource } from '@nestjs/typeorm';
 
+/**
+ * A key representing the entity manager.
+ */
 export const ENTITY_MANAGER_KEY = 'ENTITY_MANAGER';
 
+/**
+ * An interceptor that wraps the route handler in a transaction.
+ */
 @Injectable()
 export class TransactionInterceptor implements NestInterceptor {
+  /**
+   * Constructor
+   * @param dataSource - The data source.
+   */
   constructor(
     @InjectDataSource('main') private readonly dataSource: DataSource,
   ) {}
 
+  /**
+   * Method to intercept the request and wrap the route handler in a transaction.
+   * @param context - The execution context.
+   * @param next - The call handler.
+   * @returns An observable.
+   */
   async intercept(
     context: ExecutionContext,
     next: CallHandler<any>,

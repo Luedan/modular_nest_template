@@ -9,6 +9,9 @@ import { JwtModule } from '@nestjs/jwt';
 import { EXAMPLE_PROFILES, EXAMPLE_USE_CASES } from './services';
 import { EXAMPLE_CONTROLLERS } from './presentation';
 
+/**
+ * A module representing the example module.
+ */
 @Module({
   imports: [
     AutomapperModule.forRoot({

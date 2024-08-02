@@ -8,6 +8,9 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+/**
+ * A class representing a todo entity.
+ */
 @Entity({
   name: 'todos',
 })

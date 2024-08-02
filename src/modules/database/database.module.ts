@@ -3,6 +3,9 @@ import { Global, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EXAMPLE_ENTITIES } from '../example/domain';
 
+/**
+ * A module representing the database.
+ */
 @Module({
   imports: [
     TypeOrmModule.forRoot({

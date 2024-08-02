@@ -20,6 +20,9 @@ import {
 } from '../types';
 
 /* istanbul ignore next */
+/**
+ * A generic class representing a repository.
+ */
 export class GenericRepository<E extends ObjectLiteral>
   extends BaseRepository
   implements AbstractRepository<E>

@@ -9,9 +9,21 @@ import { catchError, firstValueFrom } from 'rxjs';
  */
 @Injectable()
 export class HttpAdapter {
+  /**
+   * The logger for the HTTP adapter.
+   */
   private readonly logger = new Logger(HttpAdapter.name);
+
+  /**
+   * The pre-configuration for the HTTP adapter.
+   */
   private preConfiguration: AxiosRequestConfig;
 
+  /**
+   * Creates an instance of the HTTP adapter.
+   *
+   * @param _http - The HTTP service to use
+   */
   constructor(private readonly _http: HttpService) {}
 
   /**
