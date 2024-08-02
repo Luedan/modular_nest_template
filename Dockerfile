@@ -1,5 +1,5 @@
 # Base image
-FROM node:18-alpine AS build
+FROM node:lts-alpine AS build
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 WORKDIR /home/node/app
@@ -28,7 +28,7 @@ ENV PORT $PORT
 RUN npm run build
 
 # Run the app
-FROM node:18-alpine AS production
+FROM node:lts-alpine AS production
 WORKDIR /home/node/app
 COPY --from=build /home/node/app/dist ./dist
 COPY --from=build /home/node/app/package*.json ./
