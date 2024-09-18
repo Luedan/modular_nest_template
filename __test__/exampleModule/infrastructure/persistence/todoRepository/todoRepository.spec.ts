@@ -1,7 +1,11 @@
 import { ExampleContext } from '@app/modules/example/infrastructure/persistence/context/exampleContext.service';
 import { TodoRepository } from '@app/modules/example/infrastructure/persistence/repositories/todo/todo.repository';
 import { HttpException } from '@nestjs/common';
-import { TodoMock, TodoMockArray } from '@test/mocks/exampleModule/todoMocks';
+import {
+  TodoMock,
+  TodoMockArray,
+  TodoPaginatedMock,
+} from '@test/mocks/exampleModule/todoMocks';
 import {
   FakeInsertResult,
   FakeUpdateResult,
@@ -45,6 +49,19 @@ describe('TodoRepository', () => {
 
     // Assert
     expect(result).resolves.toEqual(TodoMockArray);
+  });
+
+  it('Get paginated todos', () => {
+    // Arrange
+    appContext
+      .setup((appContext) => appContext.todo.getAllPaginated(It.IsAny()))
+      .returns(Promise.resolve(TodoPaginatedMock));
+
+    // Act
+    const result = todoRepository.getAllPaginated(It.IsAny());
+
+    // Assert
+    expect(result).resolves.toEqual(TodoPaginatedMock);
   });
 
   it('Get todo by id', () => {
@@ -123,6 +140,21 @@ describe('TodoRepository', () => {
 
     // Act
     const result = todoRepository.getAll(It.IsAny());
+
+    // Assert
+    expect(result).rejects.toThrow(
+      new HttpException('Error de DB: Error', 500),
+    );
+  });
+
+  it('Should throw an error when trying to get all paginated todos', () => {
+    // Arrange
+    appContext
+      .setup((appContext) => appContext.todo.getAllPaginated(It.IsAny()))
+      .throws(ErrorWithoutStatus);
+
+    // Act
+    const result = todoRepository.getAllPaginated(It.IsAny());
 
     // Assert
     expect(result).rejects.toThrow(

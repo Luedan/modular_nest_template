@@ -3,8 +3,12 @@ import { CreateTodo } from '@app/modules/example/services/useCases/todo/createTo
 import { DeleteTodo } from '@app/modules/example/services/useCases/todo/deleteTodo.service';
 import { FindAllTodo } from '@app/modules/example/services/useCases/todo/findAllTodo.service';
 import { FindOneTodo } from '@app/modules/example/services/useCases/todo/findOneTodo.service';
+import { PaginatedTodo } from '@app/modules/example/services/useCases/todo/paginatedTodo.service';
 import { UpdateTodo } from '@app/modules/example/services/useCases/todo/updateTodo.service';
-import { TodoResponseMock } from '@test/mocks/exampleModule/todoMocks';
+import {
+  TodoPaginatedResponseMock,
+  TodoResponseMock,
+} from '@test/mocks/exampleModule/todoMocks';
 import { It, Mock } from 'moq.ts';
 
 describe('TodoController', () => {
@@ -16,6 +20,7 @@ describe('TodoController', () => {
   const findOneTodo = new Mock<FindOneTodo>();
   const updateTodo = new Mock<UpdateTodo>();
   const deleteTodo = new Mock<DeleteTodo>();
+  const paginateTodo = new Mock<PaginatedTodo>();
 
   beforeEach(async () => {
     todoController = new TodoController(
@@ -24,6 +29,7 @@ describe('TodoController', () => {
       findAllTodo.object(),
       findOneTodo.object(),
       deleteTodo.object(),
+      paginateTodo.object(),
     );
   });
 
@@ -51,6 +57,19 @@ describe('TodoController', () => {
 
     // Assert
     expect(result).toEqual([TodoResponseMock]);
+  });
+
+  it('Find All Paginated Todo', async () => {
+    // Arrange
+    paginateTodo
+      .setup((i) => i.handle(It.IsAny(), It.IsAny()))
+      .returns(Promise.resolve(TodoPaginatedResponseMock));
+
+    // Act
+    const result = await todoController.findAllPaginated(It.IsAny());
+
+    // Assert
+    expect(result).toEqual(TodoPaginatedResponseMock);
   });
 
   it('Find One Todo', async () => {

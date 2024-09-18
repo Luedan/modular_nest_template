@@ -1,4 +1,5 @@
 import { PaginatedResponseDto } from '@app/modules/common/domain/dtos/paginateResponse.dto';
+import { createPaginatedResponse } from '@app/modules/common/utils/functions';
 import { TodoResponseDto } from '@app/modules/example/domain/todo/dto/todo-response.dto';
 import { Todo } from '@app/modules/example/domain/todo/todo.entity';
 import { TodoRepository } from '@app/modules/example/infrastructure/persistence/repositories/todo/todo.repository';
@@ -28,7 +29,7 @@ export class PaginatedTodo {
   async handle(
     page: number,
     limit: number,
-  ): Promise<PaginatedResponseDto<Todo>> {
+  ): Promise<PaginatedResponseDto<TodoResponseDto>> {
     const [todos, total] = await this._todoRepository.getAllPaginated({
       take: limit,
       skip: (page - 1) * limit,
@@ -36,14 +37,6 @@ export class PaginatedTodo {
 
     const response = this._mapper.mapArray(todos, Todo, TodoResponseDto);
 
-    return {
-      data: response,
-      total: total,
-      currentPage: page,
-      nextPage: page < Math.ceil(total / limit) ? page + 1 : null,
-      previousPage: page > 1 ? page - 1 : null,
-      lastPage: Math.ceil(total / limit),
-      limit,
-    };
+    return createPaginatedResponse({ data: response, total, page, limit });
   }
 }
