@@ -8,6 +8,7 @@ import {
 import { Todo } from '@app/modules/example/domain/todo/todo.entity';
 import { Injectable, Scope, HttpException } from '@nestjs/common';
 import { ExampleContext } from '../../context/exampleContext.service';
+import { FindManyOptions } from 'typeorm';
 
 /**
  * Represents a Todo repository.
@@ -33,6 +34,28 @@ export class TodoRepository {
       throw new HttpException(
         `Error de DB: ${error?.message}`,
         error?.status || 500,
+      );
+    }
+  }
+
+  /**
+   * Retrieves all todos from the database paginated.
+   * @param options - Optional criteria to filter the todos.
+   * @returns A promise that resolves to an array of todos.
+   * @throws HttpException if there's an error retrieving the todos from the database.
+   * @returns A promise that resolves to an array of todos.
+   */
+  async getAllPaginated(
+    options?: FindManyOptions<Todo>,
+  ): Promise<[Todo[], number]> {
+    try {
+      const response = await this._context.todo.getAllPaginated(options);
+
+      return response;
+    } catch (error) {
+      throw new HttpException(
+        `Error de DB: ${error?.message}`,
+        error.status || 500,
       );
     }
   }

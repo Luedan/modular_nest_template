@@ -3,6 +3,7 @@ import { CreateTodo } from './createTodo.service';
 import { DeleteTodo } from './deleteTodo.service';
 import { FindAllTodo } from './findAllTodo.service';
 import { FindOneTodo } from './findOneTodo.service';
+import { PaginatedTodo } from './paginatedTodo.service';
 import { UpdateTodo } from './updateTodo.service';
 
 /**
@@ -14,4 +15,5 @@ export const TODO_USE_CASES = [
   FindAllTodo,
   FindOneTodo,
   DeleteTodo,
+  PaginatedTodo,
 ];
