@@ -1,5 +1,5 @@
-import { PaginateRequestDto } from '@app/modules/common/domain/dtos/paginateRequest.dto';
 import { TransactionInterceptor } from '@app/modules/common/interceptors/transaction.interceptor';
+import { TodoPaginatedQueryDto } from '@app/modules/example/domain/todo/dto/todo-query.dto';
 import { TodoRequestDto } from '@app/modules/example/domain/todo/dto/todo-request.dto';
 import { TodoUpdateDto } from '@app/modules/example/domain/todo/dto/todo-update.dto';
 import { CreateTodo } from '@app/modules/example/services/useCases/todo/createTodo.service';
@@ -9,15 +9,15 @@ import { FindOneTodo } from '@app/modules/example/services/useCases/todo/findOne
 import { PaginatedTodo } from '@app/modules/example/services/useCases/todo/paginatedTodo.service';
 import { UpdateTodo } from '@app/modules/example/services/useCases/todo/updateTodo.service';
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Post,
   Put,
-  UseInterceptors,
   Query,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -53,8 +53,8 @@ export class TodoController {
    * @returns
    */
   @Get('paginated')
-  findAllPaginated(@Query() query: PaginateRequestDto) {
-    return this._paginatedTodo.handle(query.currentPage, query.limit);
+  findAllPaginated(@Query() query: TodoPaginatedQueryDto) {
+    return this._paginatedTodo.handle(query);
   }
 
   /**
